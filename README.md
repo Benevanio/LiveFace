@@ -1,40 +1,52 @@
-# Relatório da Faculdade: Detecção de Rostos Humanos usando OpenCV e Python
+# Detecção Facial com Python
 
-Este é um relatório que aborda a detecção de rostos humanos em imagens utilizando a biblioteca OpenCV em conjunto com a linguagem de programação Python. A detecção de rostos é uma aplicação fundamental de visão computacional, com aplicações em diversas áreas, como segurança, análise de imagens médicas e reconhecimento facial.
+Projeto simples de detecção facial em tempo real utilizando Python, OpenCV e MediaPipe.
 
-## Objetivo do Relatório
+## Funcionalidades
 
-O objetivo deste relatório é explorar e explicar o processo de detecção de rostos humanos usando a biblioteca OpenCV. Serão abordados os passos desde a preparação do ambiente até a implementação do código para detecção de rostos em imagens.
+- Detectar rostos utilizando a webcam.
+- Exibir a quantidade de rostos detectados.
+- Destacar os rostos identificados na imagem.
+- Capturar e salvar imagens pressionando uma tecla.
+- Encerrar a execução pelo teclado.
 
-## Passos do Relatório
+## Tecnologias utilizadas
 
-### 1. Instalação do OpenCV
+- Python
+- OpenCV
+- MediaPipe
 
-Primeiramente, é necessário instalar o OpenCV no ambiente Python. Use o seguinte comando para instalar a biblioteca:
+## Instalação
+
+Instale as dependências executando:
 
 ```bash
-pip install opencv-python
+python -m pip install opencv-python mediapipe==0.10.21
 ```
 
-### 2. Carregamento e Pré-processamento da Imagem
+> A versão do MediaPipe acima mantém compatibilidade com a API `mp.solutions` utilizada neste projeto.
 
-Carregue a imagem que deseja analisar e, se necessário, aplique técnicas de pré-processamento para melhorar a qualidade da imagem, como redimensionamento ou ajuste de contraste.
+## Como executar
 
-### 3. Implementação da Detecção de Rostos
+Execute o arquivo principal:
 
-A detecção de rostos pode ser realizada por meio do uso de classificadores Haar Cascade ou redes neurais convolucionais treinadas para essa finalidade. Implemente o código necessário para a detecção de rostos na imagem carregada.
+```bash
+python Face.py
+```
 
-### 4. Desenho de Retângulos nos Rostos Detectados
+A webcam será aberta e o sistema começará a detectar rostos em tempo real.
 
-Após a detecção, desenhe retângulos ao redor dos rostos detectados na imagem. Isso auxiliará na visualização dos resultados da detecção.
+## Comandos
 
-### 5. Exibição dos Resultados
+- **S:** capturar e salvar a imagem.
+- **Q:** encerrar o programa.
 
-Exiba a imagem com os retângulos desenhados para visualizar os resultados da detecção de rostos.
-DEMO:
-![Opencv](https://github.com/benetesla/LiveFace/assets/78994881/c42fa75f-022e-491f-b32a-40c56d5229b7)
+## Armazenamento das imagens
 
+As imagens capturadas são salvas automaticamente no diretório `capturas_faciais`, criado na raiz do projeto.
 
-## Conclusão
+## Requisitos
 
-Este relatório demonstrou como realizar a detecção de rostos humanos em imagens utilizando a biblioteca OpenCV e a linguagem Python. A detecção de rostos é uma aplicação poderosa e amplamente utilizada em diversos campos, desde segurança até reconhecimento facial em aplicações de autenticação.
+- Python instalado.
+- Webcam disponível e acessível.
+- Dependências instaladas corretamente.
