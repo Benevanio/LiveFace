@@ -1,52 +1,88 @@
-# Detecção Facial com Python
+# Detecção Facial com Python (LiveFace)
 
-Projeto simples de detecção facial em tempo real utilizando Python, OpenCV e MediaPipe.
+Projeto de detecção e captura facial em tempo real utilizando **Python**, **OpenCV** e **MediaPipe**.
 
 ## Funcionalidades
 
-- Detectar rostos utilizando a webcam.
-- Exibir a quantidade de rostos detectados.
-- Destacar os rostos identificados na imagem.
-- Capturar e salvar imagens pressionando uma tecla.
-- Encerrar a execução pelo teclado.
+- **Detecção em Tempo Real:** Identificação rápida e precisa de rostos com MediaPipe.
+- **Captura Limpa (Clean Frame):** As fotos são salvas sem anotações ou caixas delimitadoras sobrepostas, prontas para cadastros ou biometria.
+- **Recorte Facial Automático:** Salva opcionalmente o recorte (*crop*) aproximado do rosto com margem de segurança.
+- **Interface e HUD:** Contador de rostos detectados, monitor de FPS e alertas visuais de confirmação de captura diretamente no vídeo.
+- **Controle Flexível via CLI:** Suporte a seleção de câmera, nível de confiança, alcance do modelo e pastas de saída.
+- **Prevenção de Colisões:** Nomenclatura com milissegundos para evitar sobrescrita de imagens.
 
-## Tecnologias utilizadas
+## Tecnologias Utilizadas
 
-- Python
-- OpenCV
-- MediaPipe
+- Python 3.8+
+- [OpenCV](https://opencv.org/) (`opencv-python`)
+- [MediaPipe](https://developers.google.com/mediapipe) (`mediapipe==0.10.21`)
+- NumPy
 
 ## Instalação
 
-Instale as dependências executando:
+1. Clone o repositório ou navegue até o diretório do projeto:
+   ```bash
+   git clone <url-do-repositorio>
+   cd LiveFace
+   ```
 
-```bash
-python -m pip install opencv-python mediapipe==0.10.21
-```
+2. Crie e ative um ambiente virtual (recomendado):
+   ```bash
+   python -m venv .venv
+   # No Windows:
+   .venv\Scripts\activate
+   # No Linux/macOS:
+   source .venv/bin/activate
+   ```
 
-> A versão do MediaPipe acima mantém compatibilidade com a API `mp.solutions` utilizada neste projeto.
+3. Instale as dependências:
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
 
-## Como executar
+> **Nota:** A versão `mediapipe==0.10.21` mantém total compatibilidade com a API `mp.solutions` utilizada no projeto.
 
-Execute o arquivo principal:
+## Como Executar
 
+### Execução Padrão:
 ```bash
 python Face.py
 ```
 
-A webcam será aberta e o sistema começará a detectar rostos em tempo real.
+### Opções de Linha de Comando:
+```bash
+# Usar outra câmera conectada (índice 1)
+python Face.py --camera 1
 
-## Comandos
+# Ajustar a confiança mínima de detecção
+python Face.py --confidence 0.75
 
-- **S:** capturar e salvar a imagem.
-- **Q:** encerrar o programa.
+# Modelo de longo alcance (> 2 metros de distância)
+python Face.py --model 1
 
-## Armazenamento das imagens
+# Definir outra pasta de destino
+python Face.py --output-dir fotos_visitantes
 
-As imagens capturadas são salvas automaticamente no diretório `capturas_faciais`, criado na raiz do projeto.
+# Desativar o salvamento do recorte do rosto
+python Face.py --no-crop
+```
 
-## Requisitos
+Para ver todos os parâmetros disponíveis:
+```bash
+python Face.py --help
+```
 
-- Python instalado.
-- Webcam disponível e acessível.
-- Dependências instaladas corretamente.
+## Comandos do Teclado
+
+| Tecla | Ação |
+| :--- | :--- |
+| **S** ou **s** | Captura e salva a imagem limpa e o recorte facial. |
+| **Q**, **q** ou **ESC** | Encerra a aplicação com segurança. |
+
+## Armazenamento das Imagens
+
+As imagens capturadas são salvas automaticamente no diretório `capturas_faciais/` (ou no caminho especificado via `--output-dir`), seguindo o padrão:
+- `captura_YYYYMMDD_HHMMSS_mmm.jpg` (imagem completa original limpa)
+- `crop_YYYYMMDD_HHMMSS_mmm.jpg` (recorte facial com margem)
+
+*(O diretório `capturas_faciais/` é ignorado pelo Git por motivos de privacidade e conformidade com a LGPD).*
